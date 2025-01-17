@@ -18,6 +18,9 @@
 	"entrypoints": {
 		"main": [
 			"dev.pavatus.squid.Squid"
+		],
+		"fabric-datagen": [
+			"dev.pavatus.squid.datagen.SquidDataGenerator"
 		]
 	},
 	"mixins": [

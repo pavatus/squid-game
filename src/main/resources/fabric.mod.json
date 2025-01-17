@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "squid",
+	"version": "${version}",
+	"name": "squid",
+	"description": "SQUID GAMES",
+	"authors": [
+		"PAVATUS"
+	],
+	"contact": {
+		"homepage": "https://pavatus.github.io",
+		"sources": "https://github.com/pavatus/squid-game/",
+		"issues": "https://github.com/pavatus/squid-game/issues"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/squid/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"dev.pavatus.squid.Squid"
+		]
+	},
+	"mixins": [
+		"squid.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+
+	}
+}

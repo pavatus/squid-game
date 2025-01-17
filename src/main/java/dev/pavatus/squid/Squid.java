@@ -1,10 +1,12 @@
 package dev.pavatus.squid;
 
-import dev.pavatus.squid.item.SquidItems;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.minecraft.util.Identifier;
+
+import dev.pavatus.squid.item.SquidItems;
 
 public class Squid implements ModInitializer {
     public static final String MOD_ID = "squid";

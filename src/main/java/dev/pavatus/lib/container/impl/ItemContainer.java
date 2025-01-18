@@ -1,18 +1,19 @@
 package dev.pavatus.lib.container.impl;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
 import dev.pavatus.lib.container.RegistryContainer;
 import dev.pavatus.lib.container.item.SquidItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.Nullable;
-
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class ItemContainer implements RegistryContainer<Item> {
 
@@ -53,8 +54,7 @@ public abstract class ItemContainer implements RegistryContainer<Item> {
         });
     }
 
-    @Nullable
-    public ItemGroup getDefaultGroup() {
+    @Nullable public ItemGroup getDefaultGroup() {
         return null;
     }
 }

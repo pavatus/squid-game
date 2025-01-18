@@ -1,6 +1,10 @@
 package dev.pavatus.lib.block;
 
+import java.util.function.Function;
+import java.util.function.ToIntFunction;
+
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -13,9 +17,6 @@ import net.minecraft.resource.featuretoggle.FeatureFlag;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
-
-import java.util.function.Function;
-import java.util.function.ToIntFunction;
 
 public class SquidBlockSettings extends FabricBlockSettings {
 

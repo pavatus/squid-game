@@ -1,21 +1,23 @@
 package dev.pavatus.lib.container.impl;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
 import dev.pavatus.lib.block.SquidBlockSettings;
 import dev.pavatus.lib.container.RegistryContainer;
 import dev.pavatus.lib.container.item.SquidItem;
-import dev.pavatus.squid.mixins.AbstractBlockAccessor;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.Nullable;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
+import dev.pavatus.squid.mixins.AbstractBlockAccessor;
 
 public abstract class BlockContainer implements RegistryContainer<Block> {
 

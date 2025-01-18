@@ -1,8 +1,9 @@
 package dev.pavatus.squid.mixins;
 
-import net.minecraft.block.AbstractBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
+
+import net.minecraft.block.AbstractBlock;
 
 @Mixin(AbstractBlock.class)
 public interface AbstractBlockAccessor {

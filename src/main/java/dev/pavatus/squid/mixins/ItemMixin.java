@@ -2,12 +2,13 @@ package dev.pavatus.squid.mixins;
 
 import dev.pavatus.lib.container.item.SquidItem;
 import dev.pavatus.lib.container.item.SquidItemSettings;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 
 @Mixin(Item.class)
 public class ItemMixin implements SquidItem {

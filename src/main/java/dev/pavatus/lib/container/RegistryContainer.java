@@ -1,12 +1,13 @@
 package dev.pavatus.lib.container;
 
-import dev.pavatus.squid.SquidMod;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Locale;
+
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
+
+import dev.pavatus.squid.SquidMod;
 
 public interface RegistryContainer<T> {
 

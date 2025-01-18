@@ -17,7 +17,7 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "dev.pavatus.squid.SquidMod"
+			"dev.pavatus.squid.Squid"
 		]
 	},
 	"mixins": [

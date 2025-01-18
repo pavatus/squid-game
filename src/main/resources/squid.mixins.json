@@ -1,8 +1,10 @@
 {
 	"required": true,
-	"package": "dev.pavatus.squid.mixin",
+	"package": "dev.pavatus.squid.mixins",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
+		"AbstractBlockAccessor",
+		"ItemMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

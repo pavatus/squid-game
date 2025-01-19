@@ -4,7 +4,6 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterials;
 import net.minecraft.item.Equipment;
-import net.minecraft.item.Item;
 
 public class WearableItem extends ArmorItem implements Equipment {
     private final boolean hasRenderer;

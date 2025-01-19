@@ -1,8 +1,5 @@
 package dev.pavatus.squid.client.renderers;
 
-import dev.pavatus.squid.SquidMod;
-import dev.pavatus.squid.client.models.GuardMaskModel;
-import dev.pavatus.squid.core.items.mask.MaskItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
@@ -21,13 +18,14 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
+import dev.pavatus.squid.SquidMod;
+import dev.pavatus.squid.client.models.GuardMaskModel;
+import dev.pavatus.squid.core.items.mask.MaskItem;
+
 @Environment(value = EnvType.CLIENT)
 public class GuardMaskFeatureRenderer<T extends LivingEntity, M extends PlayerEntityModel<T>>
         extends
         FeatureRenderer<T, M> {
-
-    private static final Identifier MASK_TEXTURE = new Identifier(SquidMod.MOD_ID,
-            "textures/wearables/triangle_mask.png");
     private final GuardMaskModel model;
 
     public GuardMaskFeatureRenderer(FeatureRendererContext<T, M> context, EntityModelLoader loader) {
@@ -40,7 +38,7 @@ public class GuardMaskFeatureRenderer<T extends LivingEntity, M extends PlayerEn
                        float f, float g, float h, float j, float k, float l) {
         ItemStack stack = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
 
-        if (!(stack.getItem() instanceof MaskItem))
+        if (!(stack.getItem() instanceof MaskItem maskItem))
             return;
 
         if (!(livingEntity instanceof AbstractClientPlayerEntity))
@@ -50,6 +48,9 @@ public class GuardMaskFeatureRenderer<T extends LivingEntity, M extends PlayerEn
 
         this.model.getPart().copyTransform(this.getContextModel().head);
         this.model.setAngles(livingEntity, f, g, j, k, l);
+
+        Identifier MASK_TEXTURE = new Identifier(SquidMod.MOD_ID,
+                "textures/wearables/" + maskItem.getMaskType().asString() + "_mask.png");
 
         VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderLayer.getEntitySmoothCutout(MASK_TEXTURE));
         this.model.render(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV, 1, 1, 1, 1f);

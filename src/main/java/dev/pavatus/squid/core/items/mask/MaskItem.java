@@ -1,8 +1,8 @@
-package dev.pavatus.squid.item.mask;
+package dev.pavatus.squid.core.items.mask;
 
 import net.minecraft.entity.EquipmentSlot;
 
-import dev.pavatus.squid.item.WearableItem;
+import dev.pavatus.squid.core.items.WearableItem;
 
 public class MaskItem extends WearableItem {
     private final Type type;

@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 import dev.pavatus.squid.core.items.mask.MaskItem;
 
 public class SquidItems extends ItemContainer {
-    public static final Item MASK_SQUARE = new MaskItem(new Item.Settings(), MaskItem.Type.SQUARE);
-    public static final Item MASK_CIRCLE = new MaskItem(new Item.Settings(), MaskItem.Type.CIRCLE);
-    public static final Item MASK_TRIANGLE = new MaskItem(new Item.Settings(), MaskItem.Type.TRIANGLE);
+    public static final Item SQUARE_MASK = new MaskItem(new Item.Settings(), MaskItem.MaskType.SQUARE);
+    public static final Item CIRCLE_MASK = new MaskItem(new Item.Settings(), MaskItem.MaskType.CIRCLE);
+    public static final Item TRIANGLE_MASK = new MaskItem(new Item.Settings(), MaskItem.MaskType.TRIANGLE);
 }

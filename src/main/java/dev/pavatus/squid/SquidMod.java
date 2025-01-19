@@ -11,7 +11,7 @@ import dev.pavatus.squid.core.SquidEntities;
 import dev.pavatus.squid.core.SquidItems;
 
 public class SquidMod implements ModInitializer {
-    public static final String MOD_ID = "squid_mod";
+    public static final String MOD_ID = "squid";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     @Override

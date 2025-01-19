@@ -8,7 +8,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
-import dev.pavatus.squid.Squid;
+import dev.pavatus.squid.SquidMod;
 
 public class LanguageProvider extends FabricLanguageProvider {
 
@@ -29,7 +29,7 @@ public class LanguageProvider extends FabricLanguageProvider {
             translationBuilder.add(key, translations.get(key));
         }
 
-        dataGenerator.getModContainer().findPath("assets/" + Squid.MOD_ID + "/lang/" + languageType.name().toLowerCase() + ".existing.json").ifPresent(existingFilePath -> {
+        dataGenerator.getModContainer().findPath("assets/" + SquidMod.MOD_ID + "/lang/" + languageType.name().toLowerCase() + ".existing.json").ifPresent(existingFilePath -> {
             try {
                 translationBuilder.add(existingFilePath);
             } catch (Exception e) {

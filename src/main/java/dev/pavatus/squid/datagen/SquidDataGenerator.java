@@ -1,49 +1,42 @@
 package dev.pavatus.squid.datagen;
 
+import dev.pavatus.lib.datagen.lang.LanguageType;
+import dev.pavatus.lib.datagen.lang.SakitusLanguageProvider;
+import dev.pavatus.lib.datagen.sound.SakitusSoundProvider;
+import dev.pavatus.squid.core.SquidBlocks;
+import dev.pavatus.squid.core.SquidItems;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
-import dev.pavatus.squid.datagen.provider.lang.LanguageProvider;
-import dev.pavatus.squid.datagen.provider.lang.LanguageType;
-import dev.pavatus.squid.datagen.provider.sound.BasicSoundProvider;
-
-// TODO - use AIT datagen features when Theo moves it into its own library
 public class SquidDataGenerator implements DataGeneratorEntrypoint {
-    @Override
-    public void onInitializeDataGenerator(FabricDataGenerator gen) {
-        FabricDataGenerator.Pack pack = gen.createPack();
+	@Override
+	public void onInitializeDataGenerator(FabricDataGenerator gen) {
+		FabricDataGenerator.Pack pack = gen.createPack();
 
-        genLang(pack);
-        genSounds(pack);
-    }
+		genLang(pack);
+		genSounds(pack);
+	}
 
-    private void genLang(FabricDataGenerator.Pack pack) {
-        genEnglish(pack);
-    }
+	private void genLang(FabricDataGenerator.Pack pack) {
+		genEnglish(pack);
+	}
 
-    private void genEnglish(FabricDataGenerator.Pack pack) {
-        pack.addProvider((((output, registriesFuture) -> {
-            LanguageProvider provider = new LanguageProvider(output, LanguageType.EN_US);
+	private void genEnglish(FabricDataGenerator.Pack pack) {
+		pack.addProvider((((output, registriesFuture) -> {
+			SakitusLanguageProvider provider = new SakitusLanguageProvider(output, LanguageType.EN_US);
 
-            return provider;
-        })));
-    }
+			provider.translateBlocks(SquidBlocks.class);
+			provider.translateItems(SquidItems.class);
 
-    private void genSounds(FabricDataGenerator.Pack pack) {
-        pack.addProvider((((output, registriesFuture) -> {
-            BasicSoundProvider provider = new BasicSoundProvider(output);
+			return provider;
+		})));
+	}
 
-            return provider;
-        })));
-    }
+	private void genSounds(FabricDataGenerator.Pack pack) {
+		pack.addProvider((((output, registriesFuture) -> {
+			SakitusSoundProvider provider = new SakitusSoundProvider(output);
 
-    private static String convertToName(String str) {
-        String[] split = str.split("_");
-
-        for (int i = 0; i < split.length; i++) {
-            split[i] = split[i].substring(0, 1).toUpperCase() + split[i].substring(1).toLowerCase();
-        }
-
-        return String.join(" ", split);
-    }
+			return provider;
+		})));
+	}
 }

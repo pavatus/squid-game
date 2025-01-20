@@ -5,6 +5,8 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
+
+@SuppressWarnings({"rawtypes", "unused"})
 public class GuardMaskModel extends SinglePartEntityModel {
     private final ModelPart mask;
     public GuardMaskModel(ModelPart root) {

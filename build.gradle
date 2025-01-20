@@ -63,6 +63,9 @@ dependencies {
     include(modImplementation("com.github.pavatus:sakitus:${project.sakitus_version}")) {
         exclude(group: "net.fabricmc.fabric-api")
     }
+    include(modImplementation("com.github.duzos:animation-mc:${project.anim_version}")) {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
 }
 
 processResources {

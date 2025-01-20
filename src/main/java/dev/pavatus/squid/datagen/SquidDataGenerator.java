@@ -1,13 +1,14 @@
 package dev.pavatus.squid.datagen;
 
+import dev.pavatus.lib.datagen.lang.LanguageType;
+import dev.pavatus.lib.datagen.lang.SakitusLanguageProvider;
+import dev.pavatus.lib.datagen.sound.SakitusSoundProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
-import dev.pavatus.squid.datagen.provider.lang.LanguageProvider;
-import dev.pavatus.squid.datagen.provider.lang.LanguageType;
-import dev.pavatus.squid.datagen.provider.sound.BasicSoundProvider;
+import dev.pavatus.squid.core.SquidBlocks;
+import dev.pavatus.squid.core.SquidItems;
 
-// TODO - use AIT datagen features when Theo moves it into its own library
 public class SquidDataGenerator implements DataGeneratorEntrypoint {
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator gen) {
@@ -23,7 +24,10 @@ public class SquidDataGenerator implements DataGeneratorEntrypoint {
 
     private void genEnglish(FabricDataGenerator.Pack pack) {
         pack.addProvider((((output, registriesFuture) -> {
-            LanguageProvider provider = new LanguageProvider(output, LanguageType.EN_US);
+            SakitusLanguageProvider provider = new SakitusLanguageProvider(output, LanguageType.EN_US);
+
+            provider.translateBlocks(SquidBlocks.class);
+            provider.translateItems(SquidItems.class);
 
             return provider;
         })));
@@ -31,19 +35,9 @@ public class SquidDataGenerator implements DataGeneratorEntrypoint {
 
     private void genSounds(FabricDataGenerator.Pack pack) {
         pack.addProvider((((output, registriesFuture) -> {
-            BasicSoundProvider provider = new BasicSoundProvider(output);
+            SakitusSoundProvider provider = new SakitusSoundProvider(output);
 
             return provider;
         })));
-    }
-
-    private static String convertToName(String str) {
-        String[] split = str.split("_");
-
-        for (int i = 0; i < split.length; i++) {
-            split[i] = split[i].substring(0, 1).toUpperCase() + split[i].substring(1).toLowerCase();
-        }
-
-        return String.join(" ", split);
     }
 }

@@ -29,6 +29,8 @@ public class SquidDataGenerator implements DataGeneratorEntrypoint {
             provider.translateBlocks(SquidBlocks.class);
             provider.translateItems(SquidItems.class);
 
+            provider.addTranslation(SquidItems.Groups.MAIN, "Squid Game");
+
             return provider;
         })));
     }

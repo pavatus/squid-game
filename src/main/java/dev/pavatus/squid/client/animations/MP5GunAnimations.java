@@ -6,7 +6,7 @@ import net.minecraft.client.render.entity.animation.Keyframe;
 import net.minecraft.client.render.entity.animation.Transformation;
 
 public class MP5GunAnimations {
-    public static final Animation MP5_RELOAD = Animation.Builder.create(2.7917F)
+    public static final Animation MP5_RELOAD = Animation.Builder.create(2.7917F).looping()
         .addBoneAnimation("gun", new Transformation(Transformation.Targets.ROTATE,
             new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 4.5217F), Transformation.Interpolations.CUBIC),
             new Keyframe(0.125F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 7.5F), Transformation.Interpolations.CUBIC),

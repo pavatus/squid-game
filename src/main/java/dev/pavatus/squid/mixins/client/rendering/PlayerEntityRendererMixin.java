@@ -8,8 +8,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
@@ -17,7 +15,6 @@ import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.util.Arm;
 
 import dev.pavatus.squid.client.models.MP5GunModel;
 import dev.pavatus.squid.client.renderers.GuardMaskFeatureRenderer;
@@ -47,7 +44,6 @@ public abstract class PlayerEntityRendererMixin extends
     @Inject(method = "renderArm", at = @At("HEAD"), cancellable = true)
     private void ait$renderArm(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AbstractClientPlayerEntity player, ModelPart arm, ModelPart sleeve, CallbackInfo ci) {
         if (!(player.getEquippedStack(EquipmentSlot.MAINHAND).getItem() instanceof DummyGunItem)) return;
-        ci.cancel();
 
         PlayerEntityModel<AbstractClientPlayerEntity> playerEntityModel = this.getModel();
         this.setModelPose(player);
@@ -59,16 +55,7 @@ public abstract class PlayerEntityRendererMixin extends
 
         MP5GunModel gunModel = new MP5GunModel(MP5GunModel.getTexturedModelData().createModel());
 
-        boolean rightHanded = player.getMainArm() == Arm.RIGHT;
-
-        if (rightHanded) {
-            arm.copyTransform(gunModel.rightArm);
-            this.renderRightArm(matrices, vertexConsumers, light, player);
-            arm.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(player.getSkinTexture())), light, OverlayTexture.DEFAULT_UV);
-        } else {
-            arm.copyTransform(gunModel.leftArm);
-            this.renderLeftArm(matrices, vertexConsumers, light, player);
-            arm.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(player.getSkinTexture())), light, OverlayTexture.DEFAULT_UV);
-        }
+        gunModel.renderPlayerArms(matrices, vertexConsumers, light, player, playerEntityModel);
+        ci.cancel();
     }
 }

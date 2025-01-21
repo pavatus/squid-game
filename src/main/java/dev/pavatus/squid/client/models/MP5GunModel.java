@@ -1,10 +1,12 @@
 package dev.pavatus.squid.client.models;
 
 import net.minecraft.client.model.*;
+import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.animation.Animation;
+import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
@@ -124,6 +126,7 @@ public class MP5GunModel extends GunModel {
     @Override
     public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
         mp5.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+
     }
 
     @Override
@@ -143,7 +146,7 @@ public class MP5GunModel extends GunModel {
     @Override
     public Animation getAnimationForState(DummyGunItem.GunState state) {
         return switch(state) {
-            case SPRINTING -> Animation.Builder.create(0).build();
+            case SPRINTING -> MP5GunAnimations.MP5_SPRINT;
             case RELOADING -> MP5GunAnimations.MP5_RELOAD;
             default -> Animation.Builder.create(0).build();
         };
@@ -167,5 +170,29 @@ public class MP5GunModel extends GunModel {
             matrices.scale(0.65f, 0.65f, 0.65f);
             matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
         }
+    }
+
+    public void renderPlayerArms(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AbstractClientPlayerEntity player, PlayerEntityModel playerEntityModel) {
+        matrices.push();
+        matrices.translate(0, -1.5f, 0);
+        //playerEntityModel.rightArm.resetTransform();
+        //playerEntityModel.rightArm.copyTransform(this.rightArm);
+        //playerEntityModel.rightArm
+        //        .render(matrices,
+        //                vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(player.getSkinTexture())),
+        //                light, OverlayTexture.DEFAULT_UV);
+        /*playerEntityModel.rightSleeve.copyTransform(playerEntityModel.rightArm);
+        playerEntityModel.rightSleeve.render(matrices,
+                vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(player.getSkinTexture())),
+                light, OverlayTexture.DEFAULT_UV);
+        playerEntityModel.leftArm.copyTransform(this.leftArm);
+        playerEntityModel.leftArm.render(matrices,
+                vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(player.getSkinTexture())),
+                light, OverlayTexture.DEFAULT_UV);
+        playerEntityModel.leftSleeve.copyTransform(playerEntityModel.leftArm);
+        playerEntityModel.leftSleeve.render(matrices,
+                vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(player.getSkinTexture())),
+                light, OverlayTexture.DEFAULT_UV);*/
+        matrices.pop();
     }
 }

@@ -11,6 +11,7 @@
     "client.rendering.ArmorFeatureRendererMixin",
     "client.rendering.HeadFeatureRendererMixin",
     "client.rendering.ItemRendererMixin",
-    "client.rendering.PlayerEntityRendererMixin"
+    "client.rendering.PlayerEntityRendererMixin",
+    "client.rendering.PlayerModelMixin"
   ]
 }

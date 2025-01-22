@@ -16,6 +16,9 @@
 	"icon": "assets/squid/icon.png",
 	"environment": "*",
 	"entrypoints": {
+		"client": [
+			"dev.pavatus.squid.client.SquidModClient"
+		],
 		"main": [
 			"dev.pavatus.squid.SquidMod"
 		],

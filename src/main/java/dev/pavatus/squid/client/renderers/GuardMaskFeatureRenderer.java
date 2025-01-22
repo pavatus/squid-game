@@ -20,17 +20,17 @@ import net.minecraft.util.Identifier;
 
 import dev.pavatus.squid.SquidMod;
 import dev.pavatus.squid.client.models.GuardMaskModel;
-import dev.pavatus.squid.core.items.mask.MaskItem;
+import dev.pavatus.squid.core.items.wearables.MaskItem;
 
 @Environment(value = EnvType.CLIENT)
 public class GuardMaskFeatureRenderer<T extends LivingEntity, M extends PlayerEntityModel<T>>
         extends
         FeatureRenderer<T, M> {
-    private final GuardMaskModel model;
+    private final GuardMaskModel mask;
 
     public GuardMaskFeatureRenderer(FeatureRendererContext<T, M> context, EntityModelLoader loader) {
         super(context);
-        this.model = new GuardMaskModel(GuardMaskModel.getTexturedModelData().createModel());
+        this.mask = new GuardMaskModel(GuardMaskModel.getTexturedModelData().createModel());
     }
 
     @Override
@@ -46,14 +46,14 @@ public class GuardMaskFeatureRenderer<T extends LivingEntity, M extends PlayerEn
 
         matrixStack.push();
 
-        this.model.getPart().copyTransform(this.getContextModel().head);
-        this.model.setAngles(livingEntity, f, g, j, k, l);
+        this.mask.getPart().copyTransform(this.getContextModel().head);
+        this.mask.setAngles(livingEntity, f, g, j, k, l);
 
         Identifier MASK_TEXTURE = new Identifier(SquidMod.MOD_ID,
                 "textures/wearables/" + maskItem.getMaskType().asString() + "_mask.png");
 
         VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderLayer.getEntitySmoothCutout(MASK_TEXTURE));
-        this.model.render(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV, 1, 1, 1, 1f);
+        this.mask.render(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV, 1, 1, 1, 1f);
 
         matrixStack.pop();
     }

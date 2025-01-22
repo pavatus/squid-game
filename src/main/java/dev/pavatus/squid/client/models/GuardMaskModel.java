@@ -10,12 +10,12 @@ import net.minecraft.entity.Entity;
 public class GuardMaskModel extends SinglePartEntityModel {
     private final ModelPart mask;
     public GuardMaskModel(ModelPart root) {
-        this.mask = root.getChild("mask");
+        this.mask = root.getChild("wearables");
     }
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
-        ModelPartData mask = modelPartData.addChild("mask", ModelPartBuilder.create().uv(0, 0).cuboid(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new Dilation(0.0F))
+        ModelPartData mask = modelPartData.addChild("wearables", ModelPartBuilder.create().uv(0, 0).cuboid(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new Dilation(0.0F))
         .uv(0, 16).cuboid(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new Dilation(0.5F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
         return TexturedModelData.of(modelData, 32, 32);
     }

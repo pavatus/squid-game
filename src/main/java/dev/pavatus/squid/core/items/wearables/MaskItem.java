@@ -1,4 +1,4 @@
-package dev.pavatus.squid.core.items.mask;
+package dev.pavatus.squid.core.items.wearables;
 
 
 import net.minecraft.item.ArmorItem;

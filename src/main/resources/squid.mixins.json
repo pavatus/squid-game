@@ -3,6 +3,7 @@
   "package": "dev.pavatus.squid.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "client.rendering.AnimationUtilMixin"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -11,7 +12,6 @@
     "client.rendering.ArmorFeatureRendererMixin",
     "client.rendering.HeadFeatureRendererMixin",
     "client.rendering.ItemRendererMixin",
-    "client.rendering.PlayerEntityRendererMixin",
-    "client.rendering.PlayerModelMixin"
+    "client.rendering.PlayerEntityRendererMixin"
   ]
 }

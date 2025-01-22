@@ -8,6 +8,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
+import net.minecraft.client.render.OverlayTexture;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
@@ -15,10 +17,12 @@ import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.util.Arm;
 
-import dev.pavatus.squid.client.models.MP5GunModel;
+import dev.pavatus.squid.client.models.GuardOutfitModel;
 import dev.pavatus.squid.client.renderers.GuardMaskFeatureRenderer;
-import dev.pavatus.squid.core.items.dummies.DummyGunItem;
+import dev.pavatus.squid.client.renderers.GuardOutfitFeatureRenderer;
+import dev.pavatus.squid.core.items.wearables.GuardOutfitItem;
 
 @Mixin(PlayerEntityRenderer.class)
 public abstract class PlayerEntityRendererMixin extends
@@ -39,11 +43,13 @@ public abstract class PlayerEntityRendererMixin extends
         PlayerEntityRenderer renderer = (PlayerEntityRenderer) (Object) this;
 
         this.addFeature(new GuardMaskFeatureRenderer<>(renderer, ctx.getModelLoader()));
+        this.addFeature(new GuardOutfitFeatureRenderer<>(renderer, ctx.getModelLoader()));
     }
 
     @Inject(method = "renderArm", at = @At("HEAD"), cancellable = true)
     private void ait$renderArm(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AbstractClientPlayerEntity player, ModelPart arm, ModelPart sleeve, CallbackInfo ci) {
-        if (!(player.getEquippedStack(EquipmentSlot.MAINHAND).getItem() instanceof DummyGunItem)) return;
+        if (!(player.getEquippedStack(EquipmentSlot.CHEST).getItem() instanceof GuardOutfitItem)) return;
+        ci.cancel();
 
         PlayerEntityModel<AbstractClientPlayerEntity> playerEntityModel = this.getModel();
         this.setModelPose(player);
@@ -53,9 +59,16 @@ public abstract class PlayerEntityRendererMixin extends
         playerEntityModel.setAngles(player, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
         arm.pitch = 0.0f;
 
-        MP5GunModel gunModel = new MP5GunModel(MP5GunModel.getTexturedModelData().createModel());
+        GuardOutfitModel guardOutfitModel = new GuardOutfitModel(GuardOutfitModel.getTexturedModelData().createModel());
 
-        gunModel.renderPlayerArms(matrices, vertexConsumers, light, player, playerEntityModel);
-        ci.cancel();
+        boolean rightHanded = player.getMainArm() == Arm.RIGHT;
+
+        if (rightHanded) {
+            guardOutfitModel.RightArm.copyTransform(arm);
+            guardOutfitModel.RightArm.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(GuardOutfitFeatureRenderer.TEXTURE)), light, OverlayTexture.DEFAULT_UV);
+        } else {
+            guardOutfitModel.LeftArm.copyTransform(arm);
+            guardOutfitModel.LeftArm.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(GuardOutfitFeatureRenderer.TEXTURE)), light, OverlayTexture.DEFAULT_UV);
+        }
     }
 }

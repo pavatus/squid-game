@@ -9,7 +9,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.util.Identifier;
 
 import dev.pavatus.squid.SquidMod;
-import dev.pavatus.squid.core.items.mask.MaskItem;
+import dev.pavatus.squid.core.items.wearables.MaskItem;
 
 public class SquidOverlay implements HudRenderCallback {
 
